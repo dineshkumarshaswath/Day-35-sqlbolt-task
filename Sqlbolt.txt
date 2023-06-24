@@ -1,7 +1,7 @@
 1. Movie should have multiple media(Video or Image) 
 
 CREATE TABLE imdb ( 
-    movieid INTEGER PRIMARY KEY,
+    Movieid INTEGER PRIMARY KEY,
     Name TEXT,
     Director TEXT,
     Year INTEGER, 
@@ -9,24 +9,25 @@ CREATE TABLE imdb (
 );
 INSERT INTO imdb
 VALUES 
-(1, "Vikram", "Logeshkanagaraj",2022,D:\movies\vikaram.mkv),
-(2, "Beast", "Nelson", 2022,D:\movies\Beast.mkv),
-(3, "Soorarai Potru"," Sudha Kongara Prasad",2020,D:\movies\Soorarai Potru.mkv),
-(4, "Ponniyin Selvan 2"," ManiRatnam",2023,D:\movies\Ponniyin Selvan 2.mkv),
-(5, "Thunivu"," H.vinoth",2023,D:\movies\Thunivu.mkv);
+(1, "Vikram", "Logeshkanagaraj",2022, "D:\movies\vikaram.mkv"),
+(2, "Beast", "Nelson", 2022,  "D:\movies\Beast.mkv"),
+(3, "Soorarai Potru"," Sudha Kongara Prasad", 2020, " D:\movies\Soorarai Potru.mkv"),
+(4, "Ponniyin Selvan 2"," ManiRatnam", 2023,  " D:\movies\Ponniyin Selvan 2.mkv"),
+(5, "Thunivu"," H.vinoth",  2023,  "D:\movies\Thunivu.mkv");
 
 
 
 2. Movie can belongs to multiple Genre
 
 CREATE TABLE genre(
-    movieid INTEGER PRIMARY KEY,
+    Movieid INTEGER PRIMARY KEY,
       Genretypeone TEXT,
      Genretypetwo TEXT,
      Genretypethree TEXT 
 );
 INSERT INTO genre
-VALUES (1,"Action","Thriller","Entertainment"),
+VALUES 
+(1,"Action","Thriller","Entertainment"),
 (2,"Action","Comedy","Mystery"),
 (3,"Action","Drama","Entertainment"),
 (4,"Action","Historical fiction","Mystery"),
@@ -35,7 +36,7 @@ VALUES (1,"Action","Thriller","Entertainment"),
 3. Movie can have multiple reviews and Review can belongs to a user 
 
 CREATE TABLE review(
-    movieid INTEGER PRIMARY KEY,
+    Movieid INTEGER PRIMARY KEY,
     Movie TEXT,
     User TEXT,
     Review TEXT,
@@ -50,16 +51,18 @@ VALUES
 (4,"Ponniyin Selvan 2","Vasu","Good",6.5),
 (5,"Thunivu","Varma","Good One",7.5);
 
+
 4. Artist can have multiple skills 
 
 CREATE TABLE artistskills(
-      movieid INTEGER PRIMARY KEY,
+      Movieid INTEGER PRIMARY KEY,
       Actor TEXT,
       Skills TEXT,
 );
 
 INSERT INTO artistskills
-VALUES ( 1,"Kamalhassan","Actor ,Producer, director, Singer"),
+VALUES 
+( 1,"Kamalhassan","Actor ,Producer, director, Singer"),
 ( 2,"Vijay","Actor ,Dancer, Singer"),
 ( 3,"Surya","Actor ,Producer"),
 ( 4,"Vikram","Actor ,Singer, Writer"),
@@ -69,7 +72,7 @@ VALUES ( 1,"Kamalhassan","Actor ,Producer, director, Singer"),
 5. Artist can perform multiple role in a single film
 
 CREATE TABLE roles(
-     movieid INTEGER PRIMARY KEY,
+     Movieid INTEGER PRIMARY KEY,
       Roletyeone TEXT,
       Roletypetwo TEXT
 );
@@ -87,19 +90,19 @@ QuerySection;
 2.SELECT  Name , Director, Year ,  Video, Genretypeone,Genretypetwo,Genretypethree
 FROM imdb
   JOIN genre
-    ON movieid = genre.movieid;
+    ON Movieid = genre.Movieid;
 
 3.SELECT  Name , Director, Year ,  Video, User, Review, Rating
 FROM imdb
   JOIN review
-    ON movieid = review.movieid;
+    ON Movieid = review.Movieid;
 
 4.SELECT  Name , Director, Year ,  Video, Actor,Skills
 FROM imdb
   JOIN artistskills
-    ON movieid = artistskills.movieid;
+    ON Movieid = artistskills.Movieid;
 
 5.SELECT  Name , Director, Year ,  Video, Roletyeone , Roletypetwo
 FROM imdb
   JOIN roles
-    ON movieid = roles.movieid;
+    ON Movieid = roles.Movieid;
