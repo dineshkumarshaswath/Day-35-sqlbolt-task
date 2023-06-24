@@ -1,0 +1,105 @@
+1. Movie should have multiple media(Video or Image) 
+
+CREATE TABLE imdb ( 
+    movieid INTEGER PRIMARY KEY,
+    Name TEXT,
+    Director TEXT,
+    Year INTEGER, 
+    Video BLOB
+);
+INSERT INTO imdb
+VALUES 
+(1, "Vikram", "Logeshkanagaraj",2022,D:\movies\vikaram.mkv),
+(2, "Beast", "Nelson", 2022,D:\movies\Beast.mkv),
+(3, "Soorarai Potru"," Sudha Kongara Prasad",2020,D:\movies\Soorarai Potru.mkv),
+(4, "Ponniyin Selvan 2"," ManiRatnam",2023,D:\movies\Ponniyin Selvan 2.mkv),
+(5, "Thunivu"," H.vinoth",2023,D:\movies\Thunivu.mkv);
+
+
+
+2. Movie can belongs to multiple Genre
+
+CREATE TABLE genre(
+    movieid INTEGER PRIMARY KEY,
+      Genretypeone TEXT,
+     Genretypetwo TEXT,
+     Genretypethree TEXT 
+);
+INSERT INTO genre
+VALUES (1,"Action","Thriller","Entertainment"),
+(2,"Action","Comedy","Mystery"),
+(3,"Action","Drama","Entertainment"),
+(4,"Action","Historical fiction","Mystery"),
+(5,"Crime","Action","Entertainment");
+
+3. Movie can have multiple reviews and Review can belongs to a user 
+
+CREATE TABLE review(
+    movieid INTEGER PRIMARY KEY,
+    Movie TEXT,
+    User TEXT,
+    Review TEXT,
+    Rating FLOAT
+);
+
+INSERT INTO review
+VALUES 
+(1,"Vikram","Gopal","Excellent",8.5),
+(2,"Beast","Ram","Average",6.0),
+(3,"Soorarai Potru","Dinesh","Excellent",9.0),
+(4,"Ponniyin Selvan 2","Vasu","Good",6.5),
+(5,"Thunivu","Varma","Good One",7.5);
+
+4. Artist can have multiple skills 
+
+CREATE TABLE artistskills(
+      movieid INTEGER PRIMARY KEY,
+      Actor TEXT,
+      Skills TEXT,
+);
+
+INSERT INTO artistskills
+VALUES ( 1,"Kamalhassan","Actor ,Producer, director, Singer"),
+( 2,"Vijay","Actor ,Dancer, Singer"),
+( 3,"Surya","Actor ,Producer"),
+( 4,"Vikram","Actor ,Singer, Writer"),
+( 5,"Ajithkumar","Actor ,Racer");
+
+
+5. Artist can perform multiple role in a single film
+
+CREATE TABLE roles(
+     movieid INTEGER PRIMARY KEY,
+      Roletyeone TEXT,
+      Roletypetwo TEXT
+);
+INSERT INTO roles
+VALUES ( 1,"Kamalhassan","Hero","villain"),
+( 2,"Vijay","Hero","Soldier"),
+( 3,"Surya","Hero,Pilot"),
+( 4,"Vikram","Hero","Warrior"),
+( 5,"Ajithkumar","Hero ,Boss");
+
+QuerySection;
+
+1.SELECT * from imdb;
+
+2.SELECT  Name , Director, Year ,  Video, Genretypeone,Genretypetwo,Genretypethree
+FROM imdb
+  JOIN genre
+    ON movieid = genre.movieid;
+
+3.SELECT  Name , Director, Year ,  Video, User, Review, Rating
+FROM imdb
+  JOIN review
+    ON movieid = review.movieid;
+
+4.SELECT  Name , Director, Year ,  Video, Actor,Skills
+FROM imdb
+  JOIN artistskills
+    ON movieid = artistskills.movieid;
+
+5.SELECT  Name , Director, Year ,  Video, Roletyeone , Roletypetwo
+FROM imdb
+  JOIN roles
+    ON movieid = roles.movieid;
